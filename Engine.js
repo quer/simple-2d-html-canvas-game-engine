@@ -1,12 +1,10 @@
 var Engine = function (can, ctx) {
-	this.asset = {};
-	this.ctx = ctx;
 	this.can = can;
+	this.ctx = ctx;
 	this.fps = 1000 / 30;
 	this.delta = 0;
 	this.debug = false;
 	this.BaseGame = null;
-	this.error = null;
 	this.loopNr = null;
 
 	this.render = function () {
@@ -36,9 +34,9 @@ var Engine = function (can, ctx) {
 	}
 	this.init = function (baseGame) {
 		if(typeof baseGame.render !== 'function' && typeof baseGame.update !== 'function'){
-			console.log("the baseGame, do not have render or update function");
+			this.consoleError("the baseGame, do not have render or update function");
 		}else{
-			this.BaseGame = BaseGame;
+			this.BaseGame = baseGame;
 		}
 	}
 	this.stop = function () {
@@ -46,19 +44,24 @@ var Engine = function (can, ctx) {
 			clearInterval(this.loopNr);
 			this.loopNr = null;
 		}else{
-			console.error("no loop running");
+			this.consoleError("no loop running");
 		}
 	}
 	this.start = function () {
 		if(this.loopNr == null){
 			this.loopNr = setInterval( this.loop.bind(this), this.fps);
 		}else{
-			console.error("loop allready running");
+			this.consoleError("loop allready running");
 		}
 	}
 	this.loop = function () {
 		++this.delta;
 		this.update(this.delta);
 		this.render();
+	}
+	this.consoleError = function (errorText) {
+		if(!this.debug){
+			console.error(errorText);
+		}
 	}
 }

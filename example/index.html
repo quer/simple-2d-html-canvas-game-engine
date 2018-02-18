@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>test</title>
+	<style>
+		.centerbox {
+			/* flexbox, por favor */
+			display: -webkit-box;
+			-webkit-box-orient: horizontal;
+			-webkit-box-pack: center;
+			-webkit-box-align: center;
+
+			display: -moz-box;
+			-moz-box-orient: horizontal;
+			-moz-box-pack: center;
+			-moz-box-align: center;
+
+			width: 100%;
+			height: 90%;
+			margin: 0; padding: 0;
+		}
+		body, html { width: 100%; height: 100%; padding: 0; margin: 0; }
+		canvas {
+			box-shadow: 0 0 10px #777;
+			width: 800px;
+			height: 480px;
+		}
+		body {
+			background-color: #eee;
+		}
+</style>
+</head>
+<body>
+	<div class="centerbox">
+		<canvas id="game" width="800" height="480"></canvas>
+	</div>
+	<script src="../Engine.js"></script>
+	<script src="model/init.js"></script>
+	<script src="model/Background.js"></script>
+	<script src="model/Player.js"></script>
+	<script src="Controller/game.js"></script>
+</body>
+</html>
